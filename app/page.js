@@ -1,12 +1,18 @@
+'use client'
 import Link from "next/link"
 import Image from "next/image"
-import { products } from "./libs/products"
+import { products } from "../lib/products"
 
 import { ShoppingCart } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import ProductCard from "@/components/product-card"
+import { useState } from "react"
+import MaintenancePage from "@/components/maintenance"
 
 export default function Home() {
+  const [isMaintenance, setIsMaintenance] = useState(false);
+
+  if (isMaintenance) return <MaintenancePage />;
   return (
     <div className="flex min-h-screen flex-col items-center w-full">
       <header className="sticky top-0 z-10 border-b bg-background w-full flex justify-center">
