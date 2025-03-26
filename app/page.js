@@ -1,17 +1,33 @@
 'use client'
+import { useEffect, useState } from "react"
 import Link from "next/link"
 import Image from "next/image"
 import { products } from "../lib/products"
 
 import { ShoppingCart } from "lucide-react"
 import { Button } from "@/components/ui/button"
+import LoadingIndicator from "@/components/ui/loading-indicator"
 import ProductCard from "@/components/product-card"
-import { useState } from "react"
 import MaintenancePage from "@/components/maintenance"
+import { fetchRemoteConfig, getConfigValue } from "@/lib/firebase"
 
 export default function Home() {
-  const [isMaintenance, setIsMaintenance] = useState(false);
+  const [isMaintenance, setIsMaintenance] = useState(null);
 
+  useEffect(() => {
+    const getConfig = async () => {
+      await fetchRemoteConfig();
+      const maintenanceConfig = getConfigValue('is_under_maintenance').asBoolean();
+      setIsMaintenance(maintenanceConfig);
+    };
+    getConfig();
+  }, []);
+  
+  if (isMaintenance === null) return (
+    <div className="w-full h-screen flex justify-center items-center">
+      <LoadingIndicator size="page" />
+    </div>
+  );
   if (isMaintenance) return <MaintenancePage />;
   return (
     <div className="flex min-h-screen flex-col items-center w-full">
