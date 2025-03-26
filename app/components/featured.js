@@ -10,7 +10,7 @@ const FeaturedSection = () => {
     const collectionConfig = getConfigValue('featured_collection').asJSON();
     setCollections(collectionConfig ?? []);
   }, []);
-  return (
+  return collections && collections.length > 0 && (
     <section className="py-12 md:py-24">
         <div className="container">
             <h2 className="mb-8 text-2xl font-bold md:text-3xl">Featured Collections</h2>
