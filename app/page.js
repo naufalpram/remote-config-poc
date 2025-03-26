@@ -1,7 +1,6 @@
 'use client'
 import { useEffect, useState } from "react"
 import Link from "next/link"
-import Image from "next/image"
 import { products } from "../lib/products"
 
 import { ShoppingCart } from "lucide-react"
@@ -10,6 +9,7 @@ import LoadingIndicator from "@/components/ui/loading-indicator"
 import ProductCard from "@/components/product-card"
 import MaintenancePage from "@/components/maintenance"
 import { fetchRemoteConfig, getConfigValue } from "@/lib/firebase"
+import FeaturedSection from "./components/featured"
 
 export default function Home() {
   const [isMaintenance, setIsMaintenance] = useState(null);
@@ -153,47 +153,7 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="py-12 md:py-24">
-          <div className="container">
-            <h2 className="mb-8 text-2xl font-bold md:text-3xl">Featured Collections</h2>
-            <div className="grid gap-6 md:grid-cols-2">
-              <div className="group relative overflow-hidden rounded-lg">
-                <Image
-                  src="https://placehold.co/600x400/png"
-                  alt="Minimalist Home Collection"
-                  className="h-[300px] w-full object-cover transition-transform duration-300 group-hover:scale-105"
-                  width={600}
-                  height={400}
-                />
-                <div className="absolute inset-0 flex items-center justify-center bg-black/40">
-                  <div className="text-center text-white">
-                    <h3 className="text-xl font-medium">Home Collection</h3>
-                    <Button variant="outline" className="mt-4 border-white text-white hover:bg-white hover:text-black">
-                      Shop Now
-                    </Button>
-                  </div>
-                </div>
-              </div>
-              <div className="group relative overflow-hidden rounded-lg">
-                <Image
-                  src="https://placehold.co/600x400/png"
-                  alt="Minimalist Apparel Collection"
-                  className="h-[300px] w-full object-cover transition-transform duration-300 group-hover:scale-105"
-                  width={600}
-                  height={400}
-                />
-                <div className="absolute inset-0 flex items-center justify-center bg-black/40">
-                  <div className="text-center text-white">
-                    <h3 className="text-xl font-medium">Apparel Collection</h3>
-                    <Button variant="outline" className="mt-4 border-white text-white hover:bg-white hover:text-black">
-                      Shop Now
-                    </Button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
+        <FeaturedSection />
       </main>
 
       <footer className="border-t py-8">
