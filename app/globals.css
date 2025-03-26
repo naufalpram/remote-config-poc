@@ -41,6 +41,13 @@
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) + 4px);
+  --animate-marquee: marquee 60s linear infinite;
+
+  @keyframes marquee {
+    100% {
+      transform: translate(-200%);
+    }
+  }
 }
 
 :root {

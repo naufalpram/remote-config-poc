@@ -2,14 +2,15 @@
 import { useEffect, useState } from "react"
 import Link from "next/link"
 import { products } from "../lib/products"
+import { fetchRemoteConfig, getConfigValue } from "@/lib/firebase"
 
 import { ShoppingCart } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import LoadingIndicator from "@/components/ui/loading-indicator"
 import ProductCard from "@/components/product-card"
 import MaintenancePage from "@/components/maintenance"
-import { fetchRemoteConfig, getConfigValue } from "@/lib/firebase"
-import FeaturedSection from "./components/featured"
+import CollectionSection from "./components/collections"
+import PromoMarquee from "./components/promo-marquee"
 
 export default function Home() {
   const [isMaintenance, setIsMaintenance] = useState(null);
@@ -76,6 +77,7 @@ export default function Home() {
             <p className="mb-8 text-muted-foreground md:w-2/3">
               Discover our latest collection of minimalist products designed for modern living.
             </p>
+            <PromoMarquee className="mb-8 py-3 text-sm font-medium tracking-wide"/>
             <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
               {products.map((product) => (
                 <ProductCard key={product.id} product={product} />
@@ -153,7 +155,7 @@ export default function Home() {
           </div>
         </section>
 
-        <FeaturedSection />
+        <CollectionSection />
       </main>
 
       <footer className="border-t py-8">

@@ -4,7 +4,7 @@ import { Button } from '@/components/ui/button';
 import { useEffect, useState } from 'react';
 import { getConfigValue } from '@/lib/firebase';
 
-const FeaturedSection = () => {
+export default function CollectionSection() {
   const [collections, setCollections] = useState([]);
   useEffect(() => {
     const collectionConfig = getConfigValue('featured_collection').asJSON();
@@ -15,14 +15,14 @@ const FeaturedSection = () => {
         <div className="container">
             <h2 className="mb-8 text-2xl font-bold md:text-3xl">Featured Collections</h2>
             <div className="grid gap-6 md:grid-cols-2">
-                {collections.map((collection) => <FeaturedCard key={collection?.title} title={collection?.title} backdropImage={collection?.imgUrl} />)}
+                {collections.map((collection) => <CollectionCard key={collection?.title} title={collection?.title} backdropImage={collection?.imgUrl} />)}
             </div>
         </div>
     </section>
   )
 }
 
-const FeaturedCard = ({ title, backdropImage }) => (
+const CollectionCard = ({ title, backdropImage }) => (
     <div className="group relative overflow-hidden rounded-lg">
         <Image
             src={backdropImage}
@@ -41,5 +41,3 @@ const FeaturedCard = ({ title, backdropImage }) => (
         </div>
     </div>
 );
-
-export default FeaturedSection;
