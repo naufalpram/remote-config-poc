@@ -18,6 +18,9 @@ export default function Home() {
 
   useEffect(() => {
     const getConfig = async () => {
+      const data = await fetch('/api/get-config');
+      console.log(await data.json());
+      
       await fetchRemoteConfig();
       const maintenanceConfig = getConfigValue('is_under_maintenance').asBoolean();
       setIsMaintenance(maintenanceConfig);
