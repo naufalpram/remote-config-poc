@@ -2,7 +2,7 @@
 import { useEffect, useState } from "react"
 import Link from "next/link"
 import { products } from "../lib/products"
-import { fetchRemoteConfig, getConfigValue } from "@/lib/firebase"
+import { fetchRemoteConfig, getAllConfig, getConfigValue } from "@/lib/firebase"
 
 import { ShoppingCart } from "lucide-react"
 import { Button } from "@/components/ui/button"
@@ -23,6 +23,9 @@ export default function Home() {
       
       await fetchRemoteConfig();
       const maintenanceConfig = getConfigValue('is_under_maintenance').asBoolean();
+      const maintenanceConfig2 = getAllConfig();
+      console.log(maintenanceConfig2);
+      
       setIsMaintenance(maintenanceConfig);
     };
     getConfig();
